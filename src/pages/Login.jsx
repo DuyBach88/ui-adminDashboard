@@ -123,71 +123,192 @@ const Login = () => {
   };
 
   return (
-    <div className="vh-100 d-flex align-items-center bg-light">
+    <div className="vh-100 d-flex align-items-center bg-light position-relative overflow-hidden">
+      {/* Background decoration */}
+      <div
+        className="position-absolute opacity-25"
+        style={{
+          background:
+            "radial-gradient(circle at 20% 30%, rgba(13, 110, 253, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(13, 110, 253, 0.08) 0%, transparent 50%)",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          left: 0,
+        }}
+      />
+
       <Container>
         <Row className="justify-content-center">
           <Col md={6} lg={5}>
-            <Card className="shadow p-4 border-0 rounded-4">
-              <h3 className="text-center mb-4 text-primary fw-bold">Login</h3>
-              <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Email</Form.Label>
-                  <InputGroup>
-                    <InputGroup.Text className="bg-white">
-                      <FaUser />
-                    </InputGroup.Text>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </InputGroup>
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                  <Form.Label>Password</Form.Label>
-                  <InputGroup>
-                    <InputGroup.Text className="bg-white">
-                      <FaLock />
-                    </InputGroup.Text>
-                    <Form.Control
-                      type="password"
-                      placeholder="Enter password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </InputGroup>
-                </Form.Group>
-
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                  <Form.Check type="checkbox" label="Remember me" />
-                  <a
-                    href="/forgot-password"
-                    className="text-decoration-none small"
+            <Card
+              className="shadow border-0 bg-white position-relative"
+              style={{
+                borderRadius: "16px",
+                backdropFilter: "blur(10px)",
+                transition: "all 0.3s ease",
+              }}
+            >
+              <div className="p-5">
+                {/* Header */}
+                <div className="text-center mb-4">
+                  <h3
+                    className="text-primary fw-bold mb-2"
+                    style={{ fontSize: "1.75rem" }}
                   >
-                    Forgot password?
-                  </a>
+                    Login
+                  </h3>
+                  <p className="text-muted mb-0 small">
+                    Welcome back! Please sign in
+                  </p>
                 </div>
 
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="w-100 fw-semibold"
-                  disabled={loading}
-                >
-                  {loading ? "Signing in..." : "Sign In"}
-                </Button>
-              </Form>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Label className="fw-semibold text-dark mb-2">
+                      Email
+                    </Form.Label>
+                    <InputGroup className="shadow-sm">
+                      <InputGroup.Text
+                        className="bg-white border-end-0"
+                        style={{ borderRadius: "10px 0 0 10px" }}
+                      >
+                        <FaUser className="text-primary" />
+                      </InputGroup.Text>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="border-start-0 ps-0"
+                        style={{
+                          borderRadius: "0 10px 10px 0",
+                          boxShadow: "none",
+                          transition: "all 0.2s ease",
+                        }}
+                        onFocus={(e) => {
+                          e.target.style.borderColor = "#0d6efd";
+                          e.target.previousElementSibling.style.borderColor =
+                            "#0d6efd";
+                        }}
+                        onBlur={(e) => {
+                          e.target.style.borderColor = "#ced4da";
+                          e.target.previousElementSibling.style.borderColor =
+                            "#ced4da";
+                        }}
+                        required
+                      />
+                    </InputGroup>
+                  </Form.Group>
 
-              <p className="mt-4 text-center text-muted small">
-                Don't have an account?{" "}
-                <a href="/register" className="text-primary">
-                  Sign up
-                </a>
-              </p>
+                  <Form.Group className="mb-4">
+                    <Form.Label className="fw-semibold text-dark mb-2">
+                      Password
+                    </Form.Label>
+                    <InputGroup className="shadow-sm">
+                      <InputGroup.Text
+                        className="bg-white border-end-0"
+                        style={{ borderRadius: "10px 0 0 10px" }}
+                      >
+                        <FaLock className="text-primary" />
+                      </InputGroup.Text>
+                      <Form.Control
+                        type="password"
+                        placeholder="Enter password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="border-start-0 ps-0"
+                        style={{
+                          borderRadius: "0 10px 10px 0",
+                          boxShadow: "none",
+                          transition: "all 0.2s ease",
+                        }}
+                        onFocus={(e) => {
+                          e.target.style.borderColor = "#0d6efd";
+                          e.target.previousElementSibling.style.borderColor =
+                            "#0d6efd";
+                        }}
+                        onBlur={(e) => {
+                          e.target.style.borderColor = "#ced4da";
+                          e.target.previousElementSibling.style.borderColor =
+                            "#ced4da";
+                        }}
+                        required
+                      />
+                    </InputGroup>
+                  </Form.Group>
+
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <Form.Check
+                      type="checkbox"
+                      label="Remember me"
+                      className="text-dark small"
+                      style={{ userSelect: "none" }}
+                    />
+                    <a
+                      href="/forgot-password"
+                      className="text-primary text-decoration-none small fw-medium"
+                      style={{ transition: "all 0.2s ease" }}
+                      onMouseOver={(e) =>
+                        (e.target.style.textDecoration = "underline")
+                      }
+                      onMouseOut={(e) =>
+                        (e.target.style.textDecoration = "none")
+                      }
+                    >
+                      Forgot password?
+                    </a>
+                  </div>
+
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="w-100 fw-semibold py-2 border-0 shadow-sm"
+                    style={{
+                      fontSize: "1.05rem",
+                      borderRadius: "10px",
+                      background:
+                        "linear-gradient(135deg, #0d6efd 0%, #0056b3 100%)",
+                      transition: "all 0.3s ease",
+                      transform: loading ? "scale(0.98)" : "scale(1)",
+                    }}
+                    onMouseOver={(e) => {
+                      if (!loading) {
+                        e.target.style.transform = "translateY(-1px)";
+                        e.target.style.boxShadow =
+                          "0 6px 20px rgba(13, 110, 253, 0.25)";
+                      }
+                    }}
+                    onMouseOut={(e) => {
+                      if (!loading) {
+                        e.target.style.transform = "translateY(0)";
+                        e.target.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
+                      }
+                    }}
+                    disabled={loading}
+                  >
+                    {loading ? "Signing in..." : "Sign In"}
+                  </Button>
+                </Form>
+
+                <div className="text-center mt-4">
+                  <p className="text-muted mb-0 small">
+                    Don't have an account?{" "}
+                    <a
+                      href="/register"
+                      className="text-primary fw-semibold text-decoration-none"
+                      style={{ transition: "all 0.2s ease" }}
+                      onMouseOver={(e) =>
+                        (e.target.style.textDecoration = "underline")
+                      }
+                      onMouseOut={(e) =>
+                        (e.target.style.textDecoration = "none")
+                      }
+                    >
+                      Sign up
+                    </a>
+                  </p>
+                </div>
+              </div>
             </Card>
           </Col>
         </Row>

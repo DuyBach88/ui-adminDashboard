@@ -56,62 +56,149 @@ const Register = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light position-relative overflow-hidden">
+      {/* Background decoration */}
+      <div
+        className="position-absolute opacity-25"
+        style={{
+          background:
+            "radial-gradient(circle at 20% 30%, rgba(13, 110, 253, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(13, 110, 253, 0.08) 0%, transparent 50%)",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          left: 0,
+        }}
+      />
+
       <Card
-        className="p-5 shadow rounded-4 border-0 bg-white"
-        style={{ maxWidth: "480px", width: "100%" }} // tăng chiều rộng
+        className="p-5 shadow-lg border-0 bg-white position-relative"
+        style={{
+          maxWidth: "500px",
+          width: "100%",
+          borderRadius: "20px",
+          backdropFilter: "blur(10px)",
+          transform: "translateY(-10px)",
+          transition: "all 0.3s ease",
+        }}
       >
-        <h2 className="text-center mb-4 text-primary fw-bold">
-          Create Account
-        </h2>
+        {/* Header with icon */}
+        <div className="text-center mb-4">
+          <div
+            className="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10 mb-3"
+            style={{ width: "80px", height: "80px" }}
+          >
+            <FaUser className="text-primary" style={{ fontSize: "2rem" }} />
+          </div>
+          <h2
+            className="text-primary fw-bold mb-1"
+            style={{ fontSize: "1.8rem" }}
+          >
+            Create Account
+          </h2>
+          <p className="text-muted mb-0 small">Join us today and get started</p>
+        </div>
 
         <Form onSubmit={handleRegister}>
-          <Form.Group className="mb-3">
-            <Form.Label className="fw-semibold">Full Name</Form.Label>
-            <InputGroup>
-              <InputGroup.Text>
-                <FaUser />
+          <Form.Group className="mb-4">
+            <Form.Label className="fw-semibold text-dark mb-2">
+              Full Name
+            </Form.Label>
+            <InputGroup className="shadow-sm">
+              <InputGroup.Text
+                className="bg-white border-end-0"
+                style={{ borderRadius: "12px 0 0 12px" }}
+              >
+                <FaUser className="text-primary" />
               </InputGroup.Text>
               <Form.Control
                 type="text"
-                placeholder="Enter your name"
+                placeholder="Enter your full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="form-control-lg" // tăng kích thước
-                required
-              />
-            </InputGroup>
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label className="fw-semibold">Email</Form.Label>
-            <InputGroup>
-              <InputGroup.Text>
-                <FaEnvelope />
-              </InputGroup.Text>
-              <Form.Control
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="form-control-lg"
+                className="form-control-lg border-start-0 ps-0"
+                style={{
+                  borderRadius: "0 12px 12px 0",
+                  boxShadow: "none",
+                  transition: "all 0.2s ease",
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "#0d6efd";
+                  e.target.previousElementSibling.style.borderColor = "#0d6efd";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "#ced4da";
+                  e.target.previousElementSibling.style.borderColor = "#ced4da";
+                }}
                 required
               />
             </InputGroup>
           </Form.Group>
 
           <Form.Group className="mb-4">
-            <Form.Label className="fw-semibold">Password</Form.Label>
-            <InputGroup>
-              <InputGroup.Text>
-                <FaLock />
+            <Form.Label className="fw-semibold text-dark mb-2">
+              Email Address
+            </Form.Label>
+            <InputGroup className="shadow-sm">
+              <InputGroup.Text
+                className="bg-white border-end-0"
+                style={{ borderRadius: "12px 0 0 12px" }}
+              >
+                <FaEnvelope className="text-primary" />
+              </InputGroup.Text>
+              <Form.Control
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control-lg border-start-0 ps-0"
+                style={{
+                  borderRadius: "0 12px 12px 0",
+                  boxShadow: "none",
+                  transition: "all 0.2s ease",
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "#0d6efd";
+                  e.target.previousElementSibling.style.borderColor = "#0d6efd";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "#ced4da";
+                  e.target.previousElementSibling.style.borderColor = "#ced4da";
+                }}
+                required
+              />
+            </InputGroup>
+          </Form.Group>
+
+          <Form.Group className="mb-4">
+            <Form.Label className="fw-semibold text-dark mb-2">
+              Password
+            </Form.Label>
+            <InputGroup className="shadow-sm">
+              <InputGroup.Text
+                className="bg-white border-end-0"
+                style={{ borderRadius: "12px 0 0 12px" }}
+              >
+                <FaLock className="text-primary" />
               </InputGroup.Text>
               <Form.Control
                 type="password"
-                placeholder="Choose a password"
+                placeholder="Choose a strong password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="form-control-lg"
+                className="form-control-lg border-start-0 ps-0"
+                style={{
+                  borderRadius: "0 12px 12px 0",
+                  boxShadow: "none",
+                  transition: "all 0.2s ease",
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "#0d6efd";
+                  e.target.previousElementSibling.style.borderColor = "#0d6efd";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "#ced4da";
+                  e.target.previousElementSibling.style.borderColor = "#ced4da";
+                }}
                 required
               />
             </InputGroup>
@@ -119,19 +206,53 @@ const Register = () => {
 
           <Button
             type="submit"
-            className="w-100 fw-semibold py-2 fs-5"
+            className="w-100 fw-semibold py-3 border-0 shadow-sm"
+            style={{
+              fontSize: "1.1rem",
+              borderRadius: "12px",
+              background: "linear-gradient(135deg, #0d6efd 0%, #0056b3 100%)",
+              transition: "all 0.3s ease",
+              transform: loading ? "scale(0.98)" : "scale(1)",
+            }}
+            onMouseOver={(e) => {
+              if (!loading) {
+                e.target.style.transform = "translateY(-2px)";
+                e.target.style.boxShadow = "0 8px 25px rgba(13, 110, 253, 0.3)";
+              }
+            }}
+            onMouseOut={(e) => {
+              if (!loading) {
+                e.target.style.transform = "translateY(0)";
+                e.target.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
+              }
+            }}
             disabled={loading}
           >
-            {loading ? <Spinner animation="border" size="sm" /> : "Register"}
+            {loading ? (
+              <div className="d-flex align-items-center justify-content-center">
+                <Spinner animation="border" size="sm" className="me-2" />
+                Creating Account...
+              </div>
+            ) : (
+              "Create Account"
+            )}
           </Button>
         </Form>
 
-        <p className="mt-4 text-center small text-muted">
-          Already have an account?{" "}
-          <a href="/login" className="text-primary fw-semibold">
-            Login
-          </a>
-        </p>
+        <div className="text-center mt-4">
+          <p className="text-muted mb-0 small">
+            Already have an account?{" "}
+            <a
+              href="/login"
+              className="text-primary fw-semibold text-decoration-none"
+              style={{ transition: "all 0.2s ease" }}
+              onMouseOver={(e) => (e.target.style.textDecoration = "underline")}
+              onMouseOut={(e) => (e.target.style.textDecoration = "none")}
+            >
+              Login
+            </a>
+          </p>
+        </div>
       </Card>
     </div>
   );
